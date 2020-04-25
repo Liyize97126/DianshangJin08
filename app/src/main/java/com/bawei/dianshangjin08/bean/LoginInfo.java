@@ -1,15 +1,37 @@
 package com.bawei.dianshangjin08.bean;
 
+import org.greenrobot.greendao.annotation.Entity;
+import org.greenrobot.greendao.annotation.Id;
+import org.greenrobot.greendao.annotation.Generated;
+
 /**
  * 用户信息
  */
+@Entity
 public class LoginInfo {
     private String headPic;
     private String nickName;
     private String phone;
     private String sessionId;
     private int sex;
+    //登录状态标识：0为未登录，1为已登录
+    private int status;
+    @Id
     private long userId;
+    @Generated(hash = 1637525183)
+    public LoginInfo(String headPic, String nickName, String phone,
+            String sessionId, int sex, int status, long userId) {
+        this.headPic = headPic;
+        this.nickName = nickName;
+        this.phone = phone;
+        this.sessionId = sessionId;
+        this.sex = sex;
+        this.status = status;
+        this.userId = userId;
+    }
+    @Generated(hash = 1911824992)
+    public LoginInfo() {
+    }
     public String getHeadPic() {
         return headPic;
     }
@@ -45,5 +67,11 @@ public class LoginInfo {
     }
     public void setUserId(long userId) {
         this.userId = userId;
+    }
+    public int getStatus() {
+        return status;
+    }
+    public void setStatus(int status) {
+        this.status = status;
     }
 }
