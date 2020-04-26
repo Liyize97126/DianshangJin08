@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="15dp">
+
+    <CheckBox
+        android:id="@+id/child_check"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:focusable="false"
+        android:layout_marginLeft="20dp"/>
+
+    <ImageView
+        android:id="@+id/child_image"
+        android:layout_width="175dp"
+        android:layout_height="175dp"
+        android:src="@drawable/zhan_pict"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@id/child_check"
+        android:layout_marginLeft="20dp"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/child_image"
+        android:layout_alignTop="@id/child_image"
+        android:layout_alignBottom="@id/child_image"
+        android:layout_marginLeft="10dp">
+
+        <TextView
+            android:id="@+id/child_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="商品名称"
+            android:textSize="22sp"
+            android:textColor="#222222"
+            android:layout_marginTop="5dp"/>
+
+        <TextView
+            android:id="@+id/child_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="价格"
+            android:textSize="22sp"
+            android:textColor="#FF0000"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="5dp"/>
+
+    </RelativeLayout>
+
+</RelativeLayout>

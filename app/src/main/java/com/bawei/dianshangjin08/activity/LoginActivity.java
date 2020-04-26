@@ -42,7 +42,7 @@ public class LoginActivity extends BaseActivity implements IContact.IView<LoginI
         //初始化数据库
         DaoSession daoSession = DaoMaster.newDevSession(this, LoginInfoDao.TABLENAME);
         loginInfoDao = daoSession.getLoginInfoDao();
-        //判断是否登录
+        //判断是否登录（条件查询）
         LoginInfo loginInfo = loginInfoDao.queryBuilder().where(LoginInfoDao.Properties.Status.eq(1)).unique();//唯一
         if(loginInfo != null){
             //直接跳转

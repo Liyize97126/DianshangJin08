@@ -1,11 +1,16 @@
 package com.bawei.dianshangjin08.contact;
 
+import com.bawei.dianshangjin08.bean.Category;
 import com.bawei.dianshangjin08.bean.DataBean;
 import com.bawei.dianshangjin08.bean.LoginInfo;
+
+import java.util.List;
 
 import io.reactivex.Observable;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
+import retrofit2.http.GET;
+import retrofit2.http.Header;
 import retrofit2.http.POST;
 
 /**
@@ -23,5 +28,8 @@ public interface IContact {
         @POST("small/user/v1/login")
         @FormUrlEncoded
         Observable<DataBean<LoginInfo>> login(@Field("phone") String phone, @Field("pwd") String pwd);
+        //购物车数据
+        @GET("small/order/verify/v1/findShoppingCart")
+        Observable<DataBean<List<Category>>> findCommodityByKeyword(@Header("userId") String userId, @Header("sessionId") String sessionId);
     }
 }
