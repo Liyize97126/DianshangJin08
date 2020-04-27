@@ -1,5 +1,9 @@
 package com.bawei.dianshangjin08.util;
 
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.OkHttpClient;
@@ -41,5 +45,15 @@ public class RetrofitUtil {
     //请求
     public <T> T create(final Class<T> service){
         return retrofit.create(service);
+    }
+    //网络判断
+    public boolean hasNet(){
+        //判断网络
+        ConnectivityManager connectivityManager = (ConnectivityManager) MyApplication.getContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+        if(activeNetworkInfo != null && activeNetworkInfo.isAvailable()){
+            return true;
+        }
+        return false;
     }
 }

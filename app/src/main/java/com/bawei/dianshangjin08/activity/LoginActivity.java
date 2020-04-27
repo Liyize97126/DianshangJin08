@@ -15,6 +15,7 @@ import com.bawei.dianshangjin08.dao.DaoMaster;
 import com.bawei.dianshangjin08.dao.DaoSession;
 import com.bawei.dianshangjin08.dao.LoginInfoDao;
 import com.bawei.dianshangjin08.presenter.LoginPresenter;
+import com.bawei.dianshangjin08.util.RetrofitUtil;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -34,6 +35,11 @@ public class LoginActivity extends BaseActivity implements IContact.IView<LoginI
     @Override
     protected int getLayoutId() {
         return R.layout.activity_login;
+    }
+    //应用标题
+    @Override
+    protected String getPageTitle() {
+        return "用户登录";
     }
     @Override
     protected void initView(Bundle savedInstanceState) {
@@ -59,7 +65,13 @@ public class LoginActivity extends BaseActivity implements IContact.IView<LoginI
         if(TextUtils.isEmpty(phone) || TextUtils.isEmpty(pwd)){
             Toast.makeText(this,"错误提示：请输入合法的用户名和密码！",Toast.LENGTH_LONG).show();
         } else {
-            loginPresenter.request(phone,pwd);
+            //判断网络
+            if(RetrofitUtil.getRetrofitUtil().hasNet()){
+                //请求
+                loginPresenter.request(phone,pwd);
+            } else {
+                Toast.makeText(LoginActivity.this,"错误提示：设备未连接网络，请先检查网络设置后再进行登录！",Toast.LENGTH_LONG).show();
+            }
         }
     }
     @Override

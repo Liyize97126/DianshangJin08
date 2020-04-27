@@ -19,6 +19,7 @@ import com.bawei.dianshangjin08.contact.IContact;
 import com.bawei.dianshangjin08.dao.DaoMaster;
 import com.bawei.dianshangjin08.dao.LoginInfoDao;
 import com.bawei.dianshangjin08.presenter.ShoppingCartListPresenter;
+import com.bawei.dianshangjin08.util.RetrofitUtil;
 
 import java.util.List;
 
@@ -40,9 +41,14 @@ public class CarActivity extends BaseActivity implements IContact.IView<List<Cat
     private ShopCarAdapter shopCarAdapter;
     private LoginInfo loginInfo;
     private LoginInfoDao loginInfoDao;
+    private String userInfo;
     @Override
     protected int getLayoutId() {
         return R.layout.activity_car;
+    }
+    @Override
+    protected String getPageTitle() {
+        return "正在加载...";
     }
     @Override
     protected void initView(Bundle savedInstanceState) {
@@ -51,6 +57,8 @@ public class CarActivity extends BaseActivity implements IContact.IView<List<Cat
         shopCarList.setAdapter(shopCarAdapter);
         shoppingCartListPresenter = new ShoppingCartListPresenter(this);
         loginInfoDao = DaoMaster.newDevSession(this, LoginInfoDao.TABLENAME).getLoginInfoDao();
+        //获取账号信息
+        userInfo = getIntent().getStringExtra("userInfo");
         //监听事件
         shopCarAdapter.setOnPriceChangeListener(new ShopCarAdapter.OnPriceChangeListener() {
             @Override
@@ -61,8 +69,14 @@ public class CarActivity extends BaseActivity implements IContact.IView<List<Cat
         });
         //查询登录的用户
         loginInfo = loginInfoDao.queryBuilder().where(LoginInfoDao.Properties.Status.eq(1)).unique();
-        //去请求
-        shoppingCartListPresenter.request(String.valueOf(loginInfo.getUserId()),loginInfo.getSessionId());
+        //判断网络
+        if(RetrofitUtil.getRetrofitUtil().hasNet()){
+            //去请求
+            shoppingCartListPresenter.request(String.valueOf(loginInfo.getUserId()),loginInfo.getSessionId());
+        } else {
+            Toast.makeText(CarActivity.this,"当前设备没有网络，请检查网络设置！",Toast.LENGTH_LONG).show();
+            actionBar.setTitle("获取用户信息失败！");
+        }
     }
     @Override
     protected void initDestroy() {
@@ -85,6 +99,8 @@ public class CarActivity extends BaseActivity implements IContact.IView<List<Cat
         //刷新列表
         shopCarAdapter.getList().addAll(result);
         shopCarAdapter.notifyDataSetChanged();
+        //设置标题
+        actionBar.setTitle("用户：" + userInfo + " 的购物车界面");
     }
     //失败回调
     @Override
@@ -111,6 +127,7 @@ public class CarActivity extends BaseActivity implements IContact.IView<List<Cat
         } else {
             //提示
             Toast.makeText(this,dataBean.getStatus() + "  " + dataBean.getMessage(),Toast.LENGTH_LONG).show();
+            actionBar.setTitle("获取用户信息失败！");
         }
     }
 }

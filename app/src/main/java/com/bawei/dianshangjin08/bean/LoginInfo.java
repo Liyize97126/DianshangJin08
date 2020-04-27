@@ -5,7 +5,7 @@ import org.greenrobot.greendao.annotation.Id;
 import org.greenrobot.greendao.annotation.Generated;
 
 /**
- * 用户信息
+ * 登录信息
  */
 @Entity
 public class LoginInfo {
