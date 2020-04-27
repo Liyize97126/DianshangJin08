@@ -32,7 +32,7 @@
             android:id="@+id/total_money"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="总价 :  ￥0"
+            android:text="总价 :  ￥0.0"
             android:textSize="24sp"
             android:textColor="#FF0000"
             android:layout_alignParentRight="true"
