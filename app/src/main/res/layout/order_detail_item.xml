@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingTop="15dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#D1FFE7"
+        android:orientation="horizontal"
+        android:padding="15dp">
+
+        <TextView
+            android:id="@+id/ding"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="订单号："
+            android:textSize="20sp"/>
+
+        <TextView
+            android:id="@+id/order_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0000000000000000"
+            android:textSize="20sp"
+            android:layout_toRightOf="@id/ding"/>
+
+        <TextView
+            android:id="@+id/order_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2000-01-01"
+            android:textSize="20sp"
+            android:layout_alignParentRight="true"/>
+
+    </RelativeLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/detail_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:paddingBottom="15dp"
+        android:paddingTop="5dp"
+        android:background="#FFFFFF"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#D1E0FF"
+        android:orientation="horizontal"
+        android:padding="15dp">
+
+        <TextView
+            android:id="@+id/ding2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="总计："
+            android:textSize="20sp"
+            android:textColor="#FF0000"/>
+
+        <TextView
+            android:id="@+id/pay_amount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="￥0.0"
+            android:textSize="20sp"
+            android:layout_toRightOf="@id/ding2"
+            android:textColor="#FF0000"/>
+
+        <TextView
+            android:id="@+id/order_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="订单状态"
+            android:textSize="20sp"
+            android:layout_alignParentRight="true"
+            android:textColor="#FF9800"/>
+
+    </RelativeLayout>
+
+</LinearLayout>

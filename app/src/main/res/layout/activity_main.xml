@@ -47,6 +47,24 @@
             android:textSize="24sp"
             android:text="购物车页面"/>
 
+        <Button
+            android:id="@+id/btn_02"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="24dp"
+            android:textSize="24sp"
+            android:text="订单页面"
+            android:layout_marginTop="15dp"/>
+
+        <Button
+            android:id="@+id/btn_03"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="24dp"
+            android:textSize="24sp"
+            android:text="注销系统"
+            android:layout_marginTop="15dp"/>
+
     </LinearLayout>
 
 </ScrollView>

@@ -6,6 +6,7 @@ package com.bawei.dianshangjin08.bean;
 public class DataBean<T> {
     //定义
     private T result;
+    private T orderList;
     private String message;
     private String status = "-1";
     //封装
@@ -14,6 +15,12 @@ public class DataBean<T> {
     }
     public void setResult(T result) {
         this.result = result;
+    }
+    public T getOrderList() {
+        return orderList;
+    }
+    public void setOrderList(T orderList) {
+        this.orderList = orderList;
     }
     public String getMessage() {
         return message;

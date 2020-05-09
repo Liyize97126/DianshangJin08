@@ -86,6 +86,47 @@ public class MainActivity extends BaseActivity implements IContact.IView<UserInf
             Toast.makeText(MainActivity.this,"当前设备没有网络，请检查网络设置！",Toast.LENGTH_LONG).show();
         }
     }
+    //订单页面
+    @OnClick(R.id.btn_02)
+    protected void btn2(){
+        //判断网络
+        if(RetrofitUtil.getRetrofitUtil().hasNet()){
+            //跳转
+            Intent intent = new Intent(this, OrderListActivity.class);
+            //传递用户信息
+            intent.putExtra("userInfo",phone);
+            startActivityForResult(intent,100);
+        } else {
+            Toast.makeText(MainActivity.this,"当前设备没有网络，请检查网络设置！",Toast.LENGTH_LONG).show();
+        }
+    }
+    //注销系统
+    @OnClick(R.id.btn_03)
+    protected void btn3(){
+        //提示
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("提示");
+        builder.setMessage("确定要注销系统吗？");
+        builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                loginInfo.setStatus(0);
+                loginInfoDao.insertOrReplaceInTx(loginInfo);
+                //跳转
+                Intent intent = new Intent(MainActivity.this,LoginActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+        builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+            }
+        });
+        builder.setCancelable(false);
+        builder.create();
+        builder.show();
+    }
     //成功方法
     @Override
     public void onViewSuccess(UserInfo result, String message) {
